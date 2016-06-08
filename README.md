@@ -1,6 +1,8 @@
 # vim-elixir-alternative-files
 
-Installation with Vundle:
+Vim script for alternating between test and implementation files for Elixir
+
+## Installation with Vundle:
 
 ```
 Plugin 'renderedtext/vim-elixir-alternative-files'
