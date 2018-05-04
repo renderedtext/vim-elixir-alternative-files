@@ -13,6 +13,3 @@ Currently, you have to define a shortcut:
 ```
 nnoremap <silent><leader><leader> :call ElixirAlternateFile()<cr>
 ```
-
-My plan for the future is to make use of `:A`, but currently it is clashing with
-the vim-rails plugin.
