@@ -35,7 +35,7 @@ function! ElixirAlternateFile()
   echo fileToOpen
 
   if filereadable(fileToOpen)
-    exec(":A" . " " . fileToOpen)
+    exec(":e" . " " . fileToOpen)
   else
     echoerr "couldn't find file " . fileToOpen
   endif
