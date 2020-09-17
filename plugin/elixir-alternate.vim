@@ -12,17 +12,37 @@ function! ElixirGetAlternateFilenameForTest(filepath)
   let pathWithoutTest = split(currentFileRoot, "^test/")[0]
 
   let fileToOpen = "lib/" . pathWithoutTest . ".ex"
-  
+
   return fileToOpen
 endfunction
 
-function! ElixirGetAlternateFilename(filepath)
+function! ElixirGetAlternateFilenameApp(filepath)
   let fileToOpen = ""
 
   if empty(matchstr(a:filepath, "_test"))
     let fileToOpen = ElixirGetAlternateFilenameForImplementation(a:filepath)
   else
     let fileToOpen = ElixirGetAlternateFilenameForTest(a:filepath)
+  endif
+
+  return fileToOpen
+endfunction
+
+function! ElixirGetAlternateFilenameUmbrella(filepath)
+  let parts = split(a:filepath, '^apps/[^/]\+/\zs')
+
+  let fileToOpen = parts[0] . ElixirGetAlternateFilenameApp(parts[1])
+
+  return fileToOpen
+endfunction
+
+function! ElixirGetAlternateFilename(filepath)
+  let fileToOpen = ""
+
+  if empty(matchstr(a:filepath, "^apps/"))
+    let fileToOpen = ElixirGetAlternateFilenameApp(a:filepath)
+  else
+    let fileToOpen = ElixirGetAlternateFilenameUmbrella(a:filepath)
   endif
 
   return fileToOpen
