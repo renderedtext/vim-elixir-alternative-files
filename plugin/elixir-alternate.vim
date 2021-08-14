@@ -32,11 +32,5 @@ function! ElixirAlternateFile()
   let currentFilePath = expand(bufname("%"))
   let fileToOpen = ElixirGetAlternateFilename(currentFilePath)
 
-  echo fileToOpen
-
-  if filereadable(fileToOpen)
-    exec(":e" . " " . fileToOpen)
-  else
-    echoerr "couldn't find file " . fileToOpen
-  endif
+  exec(":e" . " " . fileToOpen)
 endfunction
